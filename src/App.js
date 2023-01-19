@@ -33,7 +33,7 @@ function App() {
               <div className="col-8 ps-5">
                 <Routes>
                   <Route path='/' element={<CountryDetails />} />
-                  <Route path='/:countryId' element={<CountryDetails />} />
+                  <Route path='/:countryId' element={<CountryDetails countries={ countries } />} />
                 </Routes>
               </div>
             </>
