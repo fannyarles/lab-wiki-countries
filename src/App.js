@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import CountriesList from "./components/CountriesList";
+import Navbar from "./components/Navbar";
+import CountryDetails from "./CountryDetails";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  
+    const [ countries, setCountries ] = useState(null);
 
+    useEffect(() => {
+        axios.get('https://ih-countries-api.herokuapp.com/countries')
+            .then(response => setCountries(response.data));
+        // const countriesList = [];
+        // countriesData.forEach(country => countriesList.push({ name: country.name.official, id: country.alpha3Code }));
+        // setCountries(countriesList);
+    }, []);
+
+  return <div className="App">
+    <Navbar />
+    <div className="container text-start">
+      <div className="row align-items-start gx-5">
+
+        { !countries 
+        ?   <div className="col">Loading...</div>
+        :   <>
+              <div className="col-4 overflow-y-auto p-0" style={ { height: "80vh" } }>
+                <CountriesList countries={ countries } />
+              </div>
+              <div className="col-8 ps-5">
+                <Routes>
+                  <Route path='/' element={<CountryDetails />} />
+                  <Route path='/:countryId' element={<CountryDetails />} />
+                </Routes>
+              </div>
+            </>
+        }
+      </div>
+    </div>
+  </div>;
+}
 export default App;
