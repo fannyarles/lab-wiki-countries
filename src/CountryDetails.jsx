@@ -33,24 +33,24 @@ function CountryDetails(props) {
         <>
             { !countryId && <p>No country selected.</p>}
             { country && 
-                <div class="container">
-                    <div class="row p-3 border-bottom">
-                        <div class="col-md-8">
+                <div className="container">
+                    <div className="row p-3 border-bottom">
+                        <div className="col-md-8">
                             <img src={ `https://flagpedia.net/data/flags/icon/72x54/${ country.alpha2Code.toLowerCase() }.png` } alt={ `flag_${ country.alpha2Code }` } style={ { height: "50px" } } className={ 'mb-4' } />
                             <h2>{ country.name.common }</h2>
                         </div>
                     </div>
-                    <div class="row p-3 border-bottom">
-                        <div class="col-md-2 fw-bold">Capital</div>
-                        <div class="col-md-6 ms-auto">{ country.capital[0] }</div>
+                    <div className="row p-3 border-bottom">
+                        <div className="col-md-2 fw-bold">Capital</div>
+                        <div className="col-md-6 ms-auto">{ country.capital[0] }</div>
                     </div>
-                    <div class="row p-3 border-bottom">
-                        <div class="col-md-2 fw-bold">Area</div>
-                        <div class="col-md-6 ms-auto">{ country.area } km²</div>
+                    <div className="row p-3 border-bottom">
+                        <div className="col-md-2 fw-bold">Area</div>
+                        <div className="col-md-6 ms-auto">{ country.area } km²</div>
                     </div>
-                    <div class="row p-3 border-bottom">
-                        <div class="col-md-2 fw-bold">Borders</div>
-                        <div class="col-md-6 ms-auto"><ul>{ country.borders.map(border => <li key={ border.id }><Link to={ `/${ border.id }`}>{ border.name }</Link></li>)}</ul></div>
+                    <div className="row p-3 border-bottom">
+                        <div className="col-md-2 fw-bold">Borders</div>
+                        <div className="col-md-6 ms-auto"><ul>{ country.borders.map(border => <li key={ border.id }><Link to={ `/${ border.id }`}>{ border.name }</Link></li>)}</ul></div>
                     </div>
                 </div>
             }
